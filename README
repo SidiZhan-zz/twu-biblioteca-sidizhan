@@ -14,6 +14,7 @@ Instructions to push your code to code.google.com
 3. Make a local commit.
     $ git add -A
     $ git commit -m “Initial commit”
+        git commit -m "Initial commit"
 
 (Dont forget to add the hidden .idea folder, as it will make opening your project in Intellij easier.)
 
