@@ -27,6 +27,7 @@ public class BibliotecaApp {
         System.out.println("Welcome to Biblioteca!");
         Scanner scanner = new Scanner(System.in);
         String input = "";
+        String output = "";
 
         while(!input.equals("q")){
             System.out.print("[options]\tlist books (l)\tquit (q)\tcheck out a book (c)\treturn a book (r)" +
@@ -42,26 +43,33 @@ public class BibliotecaApp {
             switch(opt){
                 case 'l':
                     System.out.println("List Books");
-                    String output = listBooks();
+                    output = listBooks();
                     System.out.print(output);
                     break;
                 case 'q':
                     break;
                 case 'c':
                     System.out.print("Check Out A Book - please input its index >> ");
-                    String index = scanner.nextLine();
-                    checkOutABook(index);
+                    input = scanner.nextLine();
+                    checkOutABook(input);
                     break;
                 case 'r':
                     System.out.print("Return A Book - please input its name >> ");
-                    String name = scanner.nextLine();
-                    returnABook(name);
+                    input = scanner.nextLine();
+                    returnABook(input);
                     break;
                 case 'm':
+                    System.out.println("List Movies");
+                    output = listMovies();
+                    System.out.print(output);
                     break;
                 case 'v':
+                    System.out.print("Check Out A Movie - please input its name >> ");
+                    input = scanner.nextLine();
+                    checkOutAMovie(input);
                     break;
                 case 'i':
+                    
                     break;
             }
 
@@ -143,6 +151,25 @@ public class BibliotecaApp {
             output+=movie.getName() + "\t" + movie.getYear() + "\t" + movie.getDirector() + "\t" + movie.getRating() + "\n";
         }
         return output;
+    }
+
+    public void checkOutAMovie(String name){
+        boolean success = false;
+        for(Movie movie: this.movieList){
+            if(movie.getName().equals(name)){
+                this.movieList.remove(movie);
+                success = true;
+                System.out.println("Thank you! Enjoy the movie");
+                break;
+            }
+        }
+        if(!success){
+            System.out.println("That movie is not available.");
+        }
+    }
+
+    public void logIn(String input){
+
     }
 
     public static void main(String[] args) {
