@@ -98,16 +98,26 @@ public class ExampleTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void listMoviesWithDetails(){
+        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+        String actual = bibliotecaApp.listMovies();
+        String expected = "Inside Out\t2015\tPete Docter\t9\n" +
+                "ALADDIN\t1992\tJohn Musker\tunrated\n" +
+                "FROZEN\t2013\tJennifer Lee\t8\n";
+        assertEquals(expected, actual);
+    }
+
     public static void main(String args[]){
         ExampleTest exampleTest = new ExampleTest();
 
-        exampleTest.listBooks();
-        exampleTest.bookDetails();
-        exampleTest.interfaceValidation();
-        exampleTest.checkOutABookSuccessful();
-        exampleTest.checkOutABookUnsuccessful();
-        exampleTest.returnABookSuccessful();
-        exampleTest.returnABookUnsuccessful();
-
+//        exampleTest.listBooks();
+//        exampleTest.bookDetails();
+//        exampleTest.interfaceValidation();
+//        exampleTest.checkOutABookSuccessful();
+//        exampleTest.checkOutABookUnsuccessful();
+//        exampleTest.returnABookSuccessful();
+//        exampleTest.returnABookUnsuccessful();
+        exampleTest.listMoviesWithDetails();
     }
 }

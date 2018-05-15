@@ -5,15 +5,21 @@ import java.util.*;
 
 public class BibliotecaApp {
     ArrayList<Book> bookList;
+    ArrayList<Movie> movieList;
 
     public BibliotecaApp() {
         //showInterface();
         BookQuerier bookQuerier = new BookQuerier();
         this.bookList = bookQuerier.fetchBooksFromCSV();
+        this.movieList = bookQuerier.fetchMoviesFromCSV();
     }
 
     public ArrayList<Book> getBookList(){
         return this.bookList;
+    }
+
+    public ArrayList<Movie> getMovieList(){
+        return this.movieList;
     }
 
     /* the user interface on console */
@@ -23,9 +29,11 @@ public class BibliotecaApp {
         String input = "";
 
         while(!input.equals("q")){
-            System.out.print("[options]\tlist books (l)\tquit (q)\tcheck out a book (c)\treturn a book (r)>> ");
+            System.out.print("[options]\tlist books (l)\tquit (q)\tcheck out a book (c)\treturn a book (r)" +
+                    "\tlist movies (m)\tcheck out a movie (v)\tlog in (i)>> ");
             input = scanner.nextLine();
-            if(!input.equals("l") && !input.equals("q") && !input.equals("c") && !input.equals("r")) {
+            if(!input.equals("l") && !input.equals("q") && !input.equals("c") && !input.equals("r")
+                    && !input.equals("m") && !input.equals("v") && !input.equals("i")) {
                 System.out.println("Select a valid option!");
                 continue;
             }
@@ -48,6 +56,12 @@ public class BibliotecaApp {
                     System.out.print("Return A Book - please input its name >> ");
                     String name = scanner.nextLine();
                     returnABook(name);
+                    break;
+                case 'm':
+                    break;
+                case 'v':
+                    break;
+                case 'i':
                     break;
             }
 
@@ -120,6 +134,15 @@ public class BibliotecaApp {
         if(!success){
             System.out.println("That is not a valid book to return.");
         }
+    }
+
+    public String listMovies(){
+        String output = "";
+
+        for(Movie movie:this.movieList){
+            output+=movie.getName() + "\t" + movie.getYear() + "\t" + movie.getDirector() + "\t" + movie.getRating() + "\n";
+        }
+        return output;
     }
 
     public static void main(String[] args) {
