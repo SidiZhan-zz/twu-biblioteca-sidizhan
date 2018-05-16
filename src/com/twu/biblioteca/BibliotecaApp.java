@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.io.IOException;
 import java.util.*;
 
 public class BibliotecaApp {
@@ -76,7 +75,9 @@ public class BibliotecaApp {
                     checkOutAMovie(input);
                     break;
                 case 'i':
-
+                    System.out.print("Log In - please input your librarian number and password, separate them with comma >> ");
+                    input = scanner.nextLine();
+                    logIn(input);
                     break;
             }
 
@@ -111,12 +112,17 @@ public class BibliotecaApp {
     }
 
     public void checkOutABook(String index){
+        if(this.user==null){
+            System.out.println("Please log in first!");
+            return;
+        }
+
         boolean success = false;
         for(Book book: this.bookList){
             if(book.getIndex().equals(index)){
                 this.bookList.remove(book);
                 success = true;
-                System.out.println("Thank you! Enjoy the book");
+                System.out.println("Thank you, "+this.user.getName()+"! Enjoy the book");
                 break;
             }
         }
@@ -126,6 +132,11 @@ public class BibliotecaApp {
     }
 
     public void returnABook(String name){
+        if(this.user==null){
+            System.out.println("Please log in first!");
+            return;
+        }
+
         BookQuerier bookQuerier = new BookQuerier();
         ArrayList<Book> allBooks = bookQuerier.fetchBooksFromCSV();
         boolean success = false;
@@ -141,7 +152,7 @@ public class BibliotecaApp {
                 if(!contains) {
                     this.bookList.add(book);
                     success = true;
-                    System.out.println("Thank you for returning the book.");
+                    System.out.println("Thank "+this.user.getName()+" for returning the book.");
                     break;
                 }
             }
@@ -161,12 +172,17 @@ public class BibliotecaApp {
     }
 
     public void checkOutAMovie(String name){
+        if(this.user==null){
+            System.out.println("Please log in first!");
+            return;
+        }
+
         boolean success = false;
         for(Movie movie: this.movieList){
             if(movie.getName().equals(name)){
                 this.movieList.remove(movie);
                 success = true;
-                System.out.println("Thank you! Enjoy the movie");
+                System.out.println("Thank you, "+this.user.getName()+"! Enjoy the movie");
                 break;
             }
         }

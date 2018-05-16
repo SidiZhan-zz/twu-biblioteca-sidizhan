@@ -135,15 +135,15 @@ public class ExampleTest {
     public static void main(String args[]){
         ExampleTest exampleTest = new ExampleTest();
 
-//        exampleTest.listBooks();
-//        exampleTest.bookDetails();
-//        exampleTest.interfaceValidation();
-//        exampleTest.checkOutABookSuccessful();
-//        exampleTest.checkOutABookUnsuccessful();
-//        exampleTest.returnABookSuccessful();
-//        exampleTest.returnABookUnsuccessful();
-//        exampleTest.listMoviesWithDetails();
-//        exampleTest.checkOutAMovieSuccessful();
+        exampleTest.listBooks();
+        exampleTest.bookDetails();
+        exampleTest.interfaceValidation();
+        exampleTest.checkOutABookSuccessful();
+        exampleTest.checkOutABookUnsuccessful();
+        exampleTest.returnABookSuccessful();
+        exampleTest.returnABookUnsuccessful();
+        exampleTest.listMoviesWithDetails();
+        exampleTest.checkOutAMovieSuccessful();
         exampleTest.logIn();
     }
 }
