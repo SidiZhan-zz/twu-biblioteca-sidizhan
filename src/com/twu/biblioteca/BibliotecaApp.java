@@ -6,12 +6,15 @@ import java.util.*;
 public class BibliotecaApp {
     ArrayList<Book> bookList;
     ArrayList<Movie> movieList;
+    ArrayList<User> userList;
+    User user;
 
     public BibliotecaApp() {
         //showInterface();
         BookQuerier bookQuerier = new BookQuerier();
         this.bookList = bookQuerier.fetchBooksFromCSV();
         this.movieList = bookQuerier.fetchMoviesFromCSV();
+        this.userList = bookQuerier.fetchUsersFromCSV();
     }
 
     public ArrayList<Book> getBookList(){
@@ -20,6 +23,10 @@ public class BibliotecaApp {
 
     public ArrayList<Movie> getMovieList(){
         return this.movieList;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     /* the user interface on console */
@@ -69,7 +76,7 @@ public class BibliotecaApp {
                     checkOutAMovie(input);
                     break;
                 case 'i':
-                    
+
                     break;
             }
 
@@ -169,7 +176,21 @@ public class BibliotecaApp {
     }
 
     public void logIn(String input){
+        String libraryNo = input.split(",")[0];
+        String password = input.split(",")[1];
 
+        for(User user:this.userList){
+            if(user.getLibraryNo().equals(libraryNo)&&user.getPassword().equals(password)){
+                this.user = user;
+                break;
+            }
+        }
+        if(this.user!=null){
+            System.out.println("Welcome, "+user.getName()+"!\n"
+                    +"librarian number: "+user.getLibraryNo()+"\n"
+                    +"email: "+user.getEmail()+"\n"
+                    +"phone: "+user.getPhoneNo());
+        }
     }
 
     public static void main(String[] args) {

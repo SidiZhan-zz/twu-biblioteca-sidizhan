@@ -60,4 +60,31 @@ public class BookQuerier {
         }
         return movieList;
     }
+
+    public ArrayList<User> fetchUsersFromCSV(){
+        // data stored on current directory, as csv
+        String fileName = "./data/"+"useraccounts.csv";
+        BufferedReader br = null;
+        String line = "";
+        ArrayList<User> userList = new ArrayList<User>();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            while((line = br.readLine())!= null){
+                String[] userAttributes = line.split(",");
+                User user = new User(userAttributes[0],userAttributes[1],userAttributes[2],userAttributes[3],userAttributes[4]);
+                userList.add(user);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally{
+            if(br!=null){
+                try{
+                    br.close();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return userList;
+    }
 }
